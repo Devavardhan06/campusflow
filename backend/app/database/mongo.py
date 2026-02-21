@@ -12,11 +12,16 @@ database = None
 
 async def init_db():
     global client, database
-    client = AsyncIOMotorClient(MONGO_URI, serverSelectionTimeoutMS=5000)
+    client = AsyncIOMotorClient(
+        MONGO_URI, 
+        serverSelectionTimeoutMS=30000,
+        connectTimeoutMS=30000,
+        socketTimeoutMS=30000
+    )
     database = client[DATABASE_NAME]
     try:
         await client.admin.command("ping")
-        print(f"Connected to MongoDB: {DATABASE_NAME}")
+        print(f"✓ Connected to MongoDB: {DATABASE_NAME}")
     except Exception as e:
         print(
             f"ERROR: Could not connect to MongoDB. "
