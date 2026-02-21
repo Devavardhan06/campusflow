@@ -15,6 +15,7 @@ app = FastAPI(title="CampusFlow AI", version="1.0.0")
 # CORS middleware — exact origins required when allow_credentials=True (no "*")
 origins = [
     "http://localhost:5173",  # local dev (Vite)
+    "http://localhost:5175",
     "https://tranquil-perception-production.up.railway.app",  # production frontend
 ]
 app.add_middleware(
