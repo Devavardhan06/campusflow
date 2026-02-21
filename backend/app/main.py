@@ -12,10 +12,14 @@ from app.routes import auth, dashboard, documents, fees, courses, hostel, notifi
 
 app = FastAPI(title="CampusFlow AI", version="1.0.0")
 
-# CORS middleware
+# CORS middleware — exact origins required when allow_credentials=True (no "*")
+origins = [
+    "http://localhost:5173",  # local dev (Vite)
+    "https://tranquil-perception-production.up.railway.app",  # production frontend
+]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:3000"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
