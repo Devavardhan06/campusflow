@@ -48,34 +48,37 @@ function AdminRoute({ children }) {
 function App() {
   return (
     <Routes>
-      <Route path="/landing" element={<Landing />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route
-        path="/"
-        element={
-          <PrivateRoute>
-            <Layout />
-          </PrivateRoute>
-        }
-      >
-        <Route index element={<Navigate to="/dashboard" />} />
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="documents" element={<Documents />} />
-        <Route path="fees" element={<Fees />} />
-        <Route path="courses" element={<Courses />} />
-        <Route path="hostel" element={<Hostel />} />
-        <Route path="profile" element={<Profile />} />
-        <Route
-          path="admin"
-          element={
-            <AdminRoute>
-              <AdminDashboard />
-            </AdminRoute>
-          }
-        />
-      </Route>
-    </Routes>
+  {/* Public Routes */}
+  <Route path="/" element={<Landing />} />
+  <Route path="/landing" element={<Landing />} />
+  <Route path="/login" element={<Login />} />
+  <Route path="/register" element={<Register />} />
+
+  {/* Protected Routes */}
+  <Route
+    path="/"
+    element={
+      <PrivateRoute>
+        <Layout />
+      </PrivateRoute>
+    }
+  >
+    <Route path="dashboard" element={<Dashboard />} />
+    <Route path="documents" element={<Documents />} />
+    <Route path="fees" element={<Fees />} />
+    <Route path="courses" element={<Courses />} />
+    <Route path="hostel" element={<Hostel />} />
+    <Route path="profile" element={<Profile />} />
+    <Route
+      path="admin"
+      element={
+        <AdminRoute>
+          <AdminDashboard />
+        </AdminRoute>
+      }
+    />
+  </Route>
+</Routes>
   )
 }
 
